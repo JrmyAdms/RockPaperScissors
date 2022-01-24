@@ -1,0 +1,107 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.section{
+    margin: 10px 0;
+}
+
+.scoreWindow{
+    display: flex;
+    width: 100%;
+    margin-top: -20px;
+}
+.score{
+    display: flex;
+    flex: 2;
+    justify-content: center;
+    align-items: center;
+}
+.score p{
+    padding: 0 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 25px;
+}
+.timer{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+.buttonWindow{
+    display: flex;
+    margin-top: -30px;
+}
+.buttonWindow .button{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    margin: 50px;
+}
+.buttonWindow button{
+    height: 250px;
+    width: 250px;
+}
+.buttonWindow .button img{
+    width: 150px;
+}
+
+.gameAnnouncement h2{
+    margin: none;
+}
+
+
+button.active {
+    transform: rotate(45deg);
+    background-color: tomato;
+}
+.rockOption img{
+    transform: rotate(-45deg);
+}
+
+.scissorsOption img{
+    transform: rotate(45deg);
+}
+
+.choiceWindow{
+    display: flex;
+    width: 50%;
+}
+.choice{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 50px 0;
+}
+.choice p{
+    padding: 0 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 25px;
+}
+.choice img{
+    width: 100px;
+}
+
+.gameButtons button{
+    margin: 10px 20px;
+    width: 250px;
+    padding: 50px 50px;
+}
+
+.rockOption{
+    content: url("./rock-paper-scissors-png-clipart-rock-paper-scissors-11563211310xieroclgnt-removebg-preview.png")
+}
+.paperOption{
+    content: url("./490-4906131_rock-paper-scissors-clipart-rock-paper-scissors-png-removebg-preview.png")
+}
+.scissorsOption{
+    content: url("./3313787-middle-removebg-preview.png")
+}

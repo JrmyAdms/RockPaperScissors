@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Rock, Paper, Scissors!</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="scoreWindow section">
+            <div class="score">
+                <p>Your<br>Score</p>
+                <p>:</p>
+                <span id="hScore"></span>
+            </div>
+            <div class="timer">
+                <h2 class="timer">0</h2>
+            </div>
+            <div class="score">
+                <p>Computer<br>Score</p>
+                <p>:</p>
+                <span id="cScore"></span>
+            </div>
+        </div>
+
+        <div class="gameAnnouncement">
+            <h2>Winner:</h2>
+            <span class="winner"></span>
+        </div>
+
+        <div class="buttonWindow section">
+            <div class="button">
+                <button onclick="toggleLockIn(this);" id="rockOption" class="weapon"><img src="./rock-paper-scissors-png-clipart-rock-paper-scissors-11563211310xieroclgnt-removebg-preview.png" alt=""></button>
+            </div>
+            <div class="button">
+                <button onclick="toggleLockIn(this);" id="paperOption" class="weapon"><img src="./490-4906131_rock-paper-scissors-clipart-rock-paper-scissors-png-removebg-preview.png" alt=""></button>
+            </div>
+            <div class="button">
+                <button onclick="toggleLockIn(this);" id="scissorsOption" class="weapon"><img src="./3313787-middle-removebg-preview.png" alt=""></button>
+            </div>
+        </div>
+
+        <div class="result">
+            <span class="resultTxt"></span>
+        </div>
+
+        <div class="choiceWindow">
+            <div class="choice">
+                <p>Your<br>Choice</p>
+                <p>:</p>
+                <img src="./clipart1499122.png" id="hChoice" alt="">
+            </div>
+            <div class="choice">
+                <p>Computer<br>Choice</p>
+                <p>:</p>
+                <img src="./clipart1499122.png" id="cChoice" alt="">
+            </div>
+        </div>
+
+        <div class="gameButtons">
+            <button class="resetButton section">Reset</button>
+        </div>
+
+    </div>
+    
+    <script src="./script.js"></script> 
+</body>
+</html>
