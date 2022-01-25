@@ -9,26 +9,31 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 <body>
+    <div id="pWon" class="endScreen" onclick="endScreenOff()">
+        <h1>YOU WON</h1>
+        <p class="subtitle">Reset the game to play again.</p>
+    </div>
+    <div id="cWon" class="endScreen" onclick="endScreenOff()">
+        <h1>YOU LOST</h1>
+        <p class="subtitle">Reset the game to play again.</p>
+    </div>
     <div class="container">
         <div class="scoreWindow section">
             <div class="score">
-                <p>Your<br>Score</p>
+                <p>Your Score</p>
                 <p>:</p>
-                <span id="hScore"></span>
-            </div>
-            <div class="timer">
-                <h2 class="timer">0</h2>
+                <span id="hScore">0</span>
             </div>
             <div class="score">
-                <p>Computer<br>Score</p>
+                <p>Computer Score</p>
                 <p>:</p>
-                <span id="cScore"></span>
+                <span id="cScore">0</span>
             </div>
         </div>
 
         <div class="gameAnnouncement">
             <h2>Winner:</h2>
-            <span class="winner"></span>
+            <span id="winner"></span>
         </div>
 
         <div class="buttonWindow section">
@@ -61,7 +66,8 @@
         </div>
 
         <div class="gameButtons">
-            <button class="resetButton section">Reset</button>
+            <button id="lockIn">Lock-In</button>
+            <button id="resetButton" onclick="resetGame()">Reset</button>
         </div>
 
     </div>

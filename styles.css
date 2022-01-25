@@ -6,17 +6,17 @@
 }
 
 .section{
-    margin: 10px 0;
+    margin: 5px 0;
 }
 
 .scoreWindow{
     display: flex;
-    width: 100%;
-    margin-top: -20px;
+    width: 70%;
+    margin-top: -30px;
 }
 .score{
     display: flex;
-    flex: 2;
+    flex: 1;
     justify-content: center;
     align-items: center;
 }
@@ -26,12 +26,9 @@
     font-weight: 700;
     font-size: 25px;
 }
-.timer{
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    font-size: 50px;
+.score span{
+    font-size: 25px;
+    font-weight: 800;
 }
 
 .buttonWindow{
@@ -52,8 +49,18 @@
     width: 150px;
 }
 
+.gameAnnouncement{
+    display: flex;
+    align-items: center;
+    margin: 0 0 30px 0;
+}
 .gameAnnouncement h2{
     margin: none;
+}
+#winner{
+    padding: 0 20px;
+    font-size: 20px;
+    font-weight: 800;
 }
 
 
@@ -61,11 +68,11 @@ button.active {
     transform: rotate(45deg);
     background-color: tomato;
 }
-.rockOption img{
+#rockOption img{
     transform: rotate(-45deg);
 }
 
-.scissorsOption img{
+#scissorsOption img{
     transform: rotate(45deg);
 }
 
@@ -96,12 +103,37 @@ button.active {
     padding: 50px 50px;
 }
 
+.disabled{
+    pointer-events: none;
+}
+
 .rockOption{
-    content: url("./rock-paper-scissors-png-clipart-rock-paper-scissors-11563211310xieroclgnt-removebg-preview.png")
+    content: url("./rock-paper-scissors-png-clipart-rock-paper-scissors-11563211310xieroclgnt-removebg-preview.png");
 }
 .paperOption{
-    content: url("./490-4906131_rock-paper-scissors-clipart-rock-paper-scissors-png-removebg-preview.png")
+    content: url("./490-4906131_rock-paper-scissors-clipart-rock-paper-scissors-png-removebg-preview.png");
+    transform: rotate(45deg);
 }
 .scissorsOption{
-    content: url("./3313787-middle-removebg-preview.png")
+    content: url("./3313787-middle-removebg-preview.png");
+    transform: rotate(90deg);
 }
+
+.endScreen {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.884);
+    z-index: 2;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 800;
+  }
