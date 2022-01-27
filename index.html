@@ -9,11 +9,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div id="pWon" class="endScreen" onclick="endScreenOff()">
+    <div id="player" class="endScreen" onclick="endScreenOff(this)">
         <h1>YOU WON</h1>
         <p class="subtitle">Reset the game to play again.</p>
     </div>
-    <div id="cWon" class="endScreen" onclick="endScreenOff()">
+    <div id="comp" class="endScreen" onclick="endScreenOff(this)">
         <h1>YOU LOST</h1>
         <p class="subtitle">Reset the game to play again.</p>
     </div>
@@ -38,13 +38,13 @@
 
         <div class="buttonWindow section">
             <div class="button">
-                <button onclick="toggleLockIn(this);" id="rockOption" class="weapon"><img src="./rock-paper-scissors-png-clipart-rock-paper-scissors-11563211310xieroclgnt-removebg-preview.png" alt=""></button>
+                <button id="rock" class="weapon" data-id="0"><img src="./rock-paper-scissors-png-clipart-rock-paper-scissors-11563211310xieroclgnt-removebg-preview.png" alt=""></button>
             </div>
             <div class="button">
-                <button onclick="toggleLockIn(this);" id="paperOption" class="weapon"><img src="./490-4906131_rock-paper-scissors-clipart-rock-paper-scissors-png-removebg-preview.png" alt=""></button>
+                <button id="paper" class="weapon" data-id="1"><img src="./490-4906131_rock-paper-scissors-clipart-rock-paper-scissors-png-removebg-preview.png" alt=""></button>
             </div>
             <div class="button">
-                <button onclick="toggleLockIn(this);" id="scissorsOption" class="weapon"><img src="./3313787-middle-removebg-preview.png" alt=""></button>
+                <button id="scissors" class="weapon" data-id="2"><img src="./3313787-middle-removebg-preview.png" alt=""></button>
             </div>
         </div>
 
@@ -66,7 +66,7 @@
         </div>
 
         <div class="gameButtons">
-            <button id="lockIn">Lock-In</button>
+            <button id="lockIn" class="disabled">Lock-In</button>
             <button id="resetButton" onclick="resetGame()">Reset</button>
         </div>
 

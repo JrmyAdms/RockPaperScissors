@@ -1,16 +1,15 @@
-    
-    let compSelection = computerPlay();
-    let playerSelection = "";
-    let weapon = 0;
-    let lockIn = document.querySelector('#lockIn');
-    const pScore = document.querySelector('#hScore');
-    const cScore = document.querySelector('#cScore');
-    const winnerDisplay = document.querySelector('#winner');
-    const counts = {};
-    counts.player = 0;
-    counts.comp = 0;
-    let playerScore = counts.player;
-    let compScore = counts.comp;
+    const gameStatus = {player:{weapon:0, score:0}, comp:{weapon:0, score:0}};
+
+    //UI Items
+    const pWon = $("#player");
+    const cWon = $("#comp");
+    const pScore = $('#hScore');
+    const cScore = $('#cScore');
+    const hChoice = $("#hChoice");
+    const cChoice = $("#cChoice");
+    const winnerDisplay = $('#winner');
+    const lockIn = $("#lockIn");
+    const weapon = $(".weapon");
 
     function computerPlay() {
         const options = ["0", "1", "2"];
@@ -20,115 +19,125 @@
     }
 
     //Converts selection to 0, 1, or 2
-    function playerPick(weapon) {
-        playerSelection = weapon.slice(0).toUpperCase();
-        console.log(playerSelection);
-            if (playerSelection == "ROCKOPTION" || playerSelection == 0){
-                document.querySelector("#hChoice").className = "rockOption";
-                document.querySelector("#lockIn").className = "rock";
-                playerSelection = 0;
-            } else if (playerSelection == "PAPEROPTION" || playerSelection == 1){
-                document.querySelector("#hChoice").className = "paperOption";
-                document.querySelector("#lockIn").className = "paper";
-                playerSelection = 1;
-            } else if (playerSelection == "SCISSORSOPTION" || playerSelection == 2){
-                document.querySelector("#hChoice").className = "scissorsOption";
-                document.querySelector("#lockIn").className = "scissors";
-                playerSelection = 2;
-            }
+    function playerPick(choice) {
+        gameStatus.player.weapon = choice;
+        hChoice[0].className = "";
+        switch(choice){
+            case "0" :
+                hChoice[0].classList.add("rock");
+                break;
+            case "1" :
+                hChoice[0].classList.add("paper");
+                break;
+            case "2" :
+                hChoice[0].classList.add("scissors");
+        }
     };
 
-    lockIn.addEventListener("click", function() {game(playerSelection, compSelection, playerScore, compScore)});
+    lockIn[0].addEventListener("click", game);
+
+    for(i=0; i < weapon.length; i++){
+        weapon[i].addEventListener("click", toggleLockIn);
+    }
     
     //Keeps track of the score and rounds
-    function game(playerSelection, compSelection, playerScore, compScore){
-        compSelection = computerPlay();
+    function game(){
+        gameStatus.comp.weapon = computerPlay();
         //Display Comp Choice
-        const cChoice = document.querySelector("#cChoice");
-        cChoice.className = "";
-        if(compSelection == 0){
-            cChoice.className += "rockOption";
-        } else if(compSelection == 1){
-            cChoice.className += "paperOption";
-        } else{
-            cChoice.className += "scissorsOption";
+        cChoice[0].className = "";
+        switch(gameStatus.comp.weapon){
+            case "0" :
+                cChoice[0].classList.add("rock");
+                break;
+            case "1" :
+                cChoice[0].classList.add("paper");
+                break;
+            case "2" :
+                cChoice[0].classList.add("scissors");
         }
 
         //Establish Winner
-        roundWinner = playRound(playerSelection, compSelection);
+        roundWinner = playRound();
 
         //Set Score on Screen
-        pScore.innerHTML = counts.player;
-        cScore.innerHTML = counts.comp;
-        let winner;
+        pScore[0].innerHTML = gameStatus.player.score;
+        cScore[0].innerHTML = gameStatus.comp.score;
         
         //End Game After BO3
-        if(counts.player == 3){
-            $('.weapon').addClass('disabled');
-            $('#lockIn').addClass('disabled');
-            endScreenOn("player");
-        } else if(counts.comp == 3){
-            $('.weapon').addClass('disabled');
-            $('#lockIn').addClass('disabled');
-            endScreenOn("comp");
+        if(gameStatus.player.score === 3 || gameStatus.comp.score === 3){
+            for(i=0; i<=2; i++){
+                console.log(weapon[i]);
+                weapon[i].classList.add('disabled');
+            }
+            lockIn[0].classList.add('disabled');
+                if(gameStatus.player.score === 3){
+                    endScreenOn(player);
+                } else if(gameStatus.comp.score === 3){
+                    endScreenOn(comp);
+                }
         }
     }
 
     //Applies Game-Over Screen
     function endScreenOn(winner) {
-        if(winner == "player"){
-            document.getElementById("pWon").style.display = "flex";
+        console.log(winner);
+        if(winner.id === "player"){
+            pWon[0].style.display = "flex";
         } else{
-            document.getElementById("cWon").style.display = "flex";
+            cWon[0].style.display = "flex";
         }
     }
     //Disables
-    function endScreenOff() {
-        document.getElementById("cWon").style.display = "none";
-        document.getElementById("pWon").style.display = "none";
+    function endScreenOff(element) {
+        element.style.display = "none";
     }
 
     //Decides winner of round passing back to game()
-    function playRound(playerSelection, compSelection){
-
-        if(compSelection == playerSelection){
-            winnerDisplay.innerHTML = "DRAW";
-            return counts;
+    function playRound(){
+        if(gameStatus.comp.weapon === gameStatus.player.weapon){
+            winnerDisplay[0].innerHTML = "DRAW";
+            return gameStatus;
         } else if (
-            (compSelection == 0 && playerSelection == 2) 
-            || (compSelection == 1 && playerSelection == 0) 
-            || (compSelection == 2 && playerSelection == 1)
+               (gameStatus.comp.weapon === "0" && gameStatus.player.weapon === "2") 
+            || (gameStatus.comp.weapon === "1" && gameStatus.player.weapon === "0") 
+            || (gameStatus.comp.weapon === "2" && gameStatus.player.weapon === "1")
         ){
-            winnerDisplay.innerHTML = "Machines have won this round";
-            counts.comp += 1;
-            return counts;
+            winnerDisplay[0].innerHTML = "Machines have won this round";
+            gameStatus.comp.score += 1;
+            return gameStatus;
         } else {
-            winnerDisplay.innerHTML = "You won this round";
-            counts.player += 1;
-            return counts;
+            winnerDisplay[0].innerHTML = "You won this round";
+            gameStatus.player.score += 1;
+            return gameStatus;
         }
     }
 
     //Activates Chosen Weapon
     function toggleLockIn(choice) {
-        document.querySelector("#cChoice").className = "";
-        $('#rockOption, #paperOption, #scissorsOption').each(function() {
-            if ($(this).hasClass('active')){
-                $(this).removeClass('active');
+        cChoice.className = "";
+        for(i=0; i < weapon.length; i++){
+            if(weapon[i].classList.contains("active")){
+                weapon[i].classList.remove("active");
             }
-        });
-        choice.classList.toggle('active');
-        playerPick(choice.id);
+        }
+        choice.target.classList.add("active");
+        playerPick(choice.target.dataset.id);
+        lockIn[0].classList.remove('disabled');
     }
 
 
     //Resets Game
     function resetGame(){
-        counts.player = 0;
-        counts.comp = 0;
-        $('.weapon').removeClass('disabled');
-        $('.weapon').removeClass('active');
-        $('#lockIn').re('disabled');
+        gameStatus.player.score = 0;
+        gameStatus.comp.score = 0;
+        pScore[0].innerHTML = gameStatus.player.score;
+        cScore[0].innerHTML = gameStatus.comp.score;
+
+        weapon.removeClass('disabled');
+        weapon.removeClass('active');
+        lockIn[0].classList.add('disabled');
+        hChoice[0].classList = "";
+        cChoice[0].classList = "";;
     }
 
     // // Handled Draws
@@ -149,7 +158,7 @@
 
     // // Handled response to rematch request
     // function rematch(acceptRematch){
-    //     if(acceptRematch == true){
+    //     if(acceptRematch === true){
     //         return resetGame();
     //     } else{
     //         return alert("Damn yellowbelly!\n\nRefresh the page if you grow a pair!");

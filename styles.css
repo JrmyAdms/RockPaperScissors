@@ -47,6 +47,7 @@
 }
 .buttonWindow .button img{
     width: 150px;
+    pointer-events: none;
 }
 
 .gameAnnouncement{
@@ -107,14 +108,14 @@ button.active {
     pointer-events: none;
 }
 
-.rockOption{
+.rock{
     content: url("./rock-paper-scissors-png-clipart-rock-paper-scissors-11563211310xieroclgnt-removebg-preview.png");
 }
-.paperOption{
+.paper{
     content: url("./490-4906131_rock-paper-scissors-clipart-rock-paper-scissors-png-removebg-preview.png");
     transform: rotate(45deg);
 }
-.scissorsOption{
+.scissors{
     content: url("./3313787-middle-removebg-preview.png");
     transform: rotate(90deg);
 }
